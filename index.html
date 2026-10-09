@@ -151,6 +151,12 @@ dialog .x{top:calc(env(safe-area-inset-top,0px) + 1rem); right:1rem}
 dialog .prev{left:1rem; top:50%; transform:translateY(-50%)}
 dialog .next{right:1rem; top:50%; transform:translateY(-50%)}
 
+@media (max-width:600px){
+  dialog .stage{padding:4rem .6rem 6rem}
+  dialog .prev, dialog .next{top:auto; transform:none; bottom:calc(env(safe-area-inset-bottom,0px) + 1rem)}
+  dialog .prev{left:1rem} dialog .next{right:1rem}
+  dialog .cap{bottom:calc(env(safe-area-inset-bottom,0px) + 1.7rem)}
+}
 /* responsivo */
 @media (max-width:960px){
   :root{--side:0px}
@@ -352,11 +358,6 @@ dialog .next{right:1rem; top:50%; transform:translateY(-50%)}
   dlg.querySelector('.next').addEventListener('click',function(){ show(idx+1); });
   dlg.addEventListener('keydown',function(e){ if(e.key==='ArrowLeft') show(idx-1); if(e.key==='ArrowRight') show(idx+1); });
   dlg.querySelector('.stage').addEventListener('click',function(e){ if(e.target===this) dlg.close(); });
-
-    tg.setAttribute('aria-expanded',String(!open));
-    tg.textContent=open?'ver mais 10 peças':'mostrar menos';
-    if(open) document.getElementById('feed').scrollIntoView({block:'center'});
-  });
 
   var tg=document.getElementById('toggle-feed');
   tg.addEventListener('click',function(){
